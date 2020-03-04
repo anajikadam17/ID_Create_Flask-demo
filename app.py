@@ -23,8 +23,16 @@ def index():
 def Task1():
   return render_template("Task1.html")
 
+    
 @app.route('/idcreate',methods=['POST'])
 def idcreate():
+    if request.method == 'POST':  
+        f = request.files['file']  
+        f.save(f.filename)  
+        filename1 = f.filename
+    df = pd.read_excel(filename1)
+    
+    
     def ID(df):
         def clean(df):
             df['Name'] = df['Name'].apply(lambda x: str(x).upper())
@@ -97,21 +105,31 @@ def idcreate():
         df = df[col]
         return df
     
-    df = pd.read_excel('data.xlsx')
+    
     df = ID(df)
     data1 = df.to_html()
     #write html to file 
     text_file = open("data1.html", "w") 
     text_file.write(data1) 
     text_file.close()
-    
+    return render_template("success.html", name = text_file)  
     #df.to_excel (r'data1.xlsx', index = None, header=True)
     #return render_template('index.html', prediction_text='Employee Salary should be $ {}'.format(output))
-    return render_template("result.html") 
+    '''return render_template("result.html") '''
    
     #return render_template("result.html", prediction = df.to_html(titles = ['na', 'Female surfers', 'Male surfers'])) 
     #return render_template('result.html',tables=[df.to_html(), df.to_html(classes='male')],
    # titles = ['na', 'Female surfers', 'Male surfers'])
+   
+@app.route('/')
+def upload_form():
+    return render_template('download.html')
+
+@app.route('/download/')
+def download_file():
+    path = "data1.html"
+    return send_file(path)
+
 
 if __name__ == "__main__":
     app.run(debug=True)

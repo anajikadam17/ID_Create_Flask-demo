@@ -168,13 +168,13 @@ and open the template in the editor.
                     <div class="banner_content">
                         <h1>Load file for Task 1</h1>
                         <p> Only Excel file</p>
-                            <form action="{{ url_for('idcreate')}}"method="post">
-                                  <!-- File input field -->
-                                  <input type="file" id="file" onchange="return fileValidation()"/>
-                                  <!--<input type="submit">-->
-                                  <button type="submit" class="btn btn-primary btn-block btn-large">Submit</button>
+                            <!--form action="{{ url_for('idcreate')}}"method="post"-->
+                                 
+                            <form action ={{ url_for('idcreate')}} method = "post" enctype="multipart/form-data">  
+                                <input type="file" name="file" id="file" onchange="return fileValidation()"/>
+                                <button type="submit" value="Upload" class="btn-block">Submit</button>
                             </form>
-                            
+                            <br><br> 
                             <a href="{{ url_for('index') }}" class="button">Home</a> 
                     </div>
                       
