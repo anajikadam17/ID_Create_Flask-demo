@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<head>  
-<title>success</title>  
-</head>  
-<body>  
-
+<html>
+<head>
+ <meta charset="UTF-8">
+<title>Download</title>
+</head>
+<body>
+<a href="{{ url_for('index') }}" class="button">Home</a> 
 <p>
- <a href="{{ url_for('.download_file') }}">Download</a>
+ Generate ID_Report File <a href="{{ url_for('.download_report') }}">download</a> in Excel format (ID_report.xls)
 </p>
-</body>  
+</body>
 </html>
-
-
-
